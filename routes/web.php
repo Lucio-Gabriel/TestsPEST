@@ -15,9 +15,12 @@ Route::get('/403', function() {
     return ['oi'];
 });
 
-
 Route::get('/products', function() {
     return view('products', [
         'products' => \App\Models\Product::all()
     ]);
+});
+
+Route::get('/drivers', function(){
+    return view('drivers');
 });

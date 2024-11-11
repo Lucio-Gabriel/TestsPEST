@@ -12,6 +12,8 @@ it('deve listar produtos')
         'Produto B'
     ]);
 
+
+
 // test('deve listar produtos do banco de dados', function() {
 //     $product1 = Product::factory()->create();
 //     $product2 = Product::factory()->create();
