@@ -1,9 +1,10 @@
 <?php
-// testing product creation
+
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
 
+// testing product creation
 it('should be able o create a product', function () {
     postJson(
         route('product.store'),
@@ -58,7 +59,20 @@ it('should be able to update a product', function () {
 // testing the creation of delete product
 it('should be able to delete a product', function () {
 
-})->todo();
+    $product = \App\Models\Product::factory()->create();
+
+    // funcao de deletar
+    \Pest\Laravel\deleteJson(route('product.destroy', $product))
+        ->assertOk();
+
+    // verificando na tabela de produto que nao tenho nenhum ID
+    \Pest\Laravel\assertDatabaseMissing('products', [
+        'id' => $product->id
+    ]);
+
+    //Confirmando a contagem de itens no meu banco de dados
+    assertDatabaseCount('products', 0);
+});
 
 
 

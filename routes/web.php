@@ -40,3 +40,7 @@ Route::put('/products/{product}', function (\App\Models\Product $product) {
     $product->save();
 
 })->name('product.update');
+
+Route::delete('/products/{product}', function (\App\Models\Product $product) {
+    $product->delete();
+})->name('product.destroy');
