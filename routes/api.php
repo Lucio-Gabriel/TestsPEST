@@ -13,3 +13,20 @@ Route::get('/products', function() {
        ['title'=>'Produto B']
    ];
 });
+
+Route::get('services', function() {
+    return [
+        ['service' => 'Empregada'],
+        ['service' => 'Cozinheira'],
+        ['service' => 'Baba'],
+        ['service' => 'massagista'],
+        ['service' => 'vigilante'],
+
+        ['price' => '200.90'],
+        ['price' => '299.90'],
+        ['price' => '150.90'],
+        ['price' => '100.00'],
+        ['price' => '300.00'],
+
+    ];
+});

@@ -24,3 +24,12 @@ Route::get('/products', function() {
 Route::get('/drivers', function(){
     return view('drivers');
 });
+
+Route::post('/products', function() {
+
+    \App\Models\Product::query()
+        ->create(request()->only('title'));
+
+    return response()->json('', '201');
+
+})->name('product.store');
