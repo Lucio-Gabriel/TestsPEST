@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,7 +18,7 @@ Route::get('/403', function() {
 
 Route::get('/products', function() {
     return view('products', [
-        'products' => \App\Models\Product::all()
+        'products' => Product::all()
     ]);
 });
 
@@ -27,20 +28,24 @@ Route::get('/drivers', function(){
 
 Route::post('/products', function() {
 
-    \App\Models\Product::query()
+    request()->validate([
+        'title' => 'required|max:255'
+    ]);
+
+    Product::query()
         ->create(request()->only('title'));
 
     return response()->json('', '201');
 
 })->name('product.store');
 
-Route::put('/products/{product}', function (\App\Models\Product $product) {
+Route::put('/products/{product}', function (Product $product) {
 
     $product->title = request()->get('title');
     $product->save();
 
 })->name('product.update');
 
-Route::delete('/products/{product}', function (\App\Models\Product $product) {
+Route::delete('/products/{product}', function (Product $product) {
     $product->delete();
 })->name('product.destroy');

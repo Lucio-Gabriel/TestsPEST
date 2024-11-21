@@ -16,7 +16,7 @@ it('should be able o create a product', function () {
        'title' => 'Titulo qualquer'
     ]);
 
-    // Verifcando se existe, mas fazendo query
+    // Verifcando se existe, fazendo query
     \PHPUnit\Framework\assertTrue(
         \App\Models\Product::query()
             ->where('title', '=', 'Titulo qualquer')
